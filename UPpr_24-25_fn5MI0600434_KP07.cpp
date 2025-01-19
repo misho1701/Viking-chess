@@ -1,3 +1,16 @@
+/**
+ *
+ * Solution to course project # 7
+ * Introduction to programing course
+ * Faculty of Mathematics and Informatics of Sofia University
+ * Winter semester 2024/2025
+ *
+ * author Mihail Georgiev
+ * @idnumber FK:5MI0600434
+ * @compiler VC
+ *
+ * <Main File with the code>
+ */
 #include <iostream>
 using namespace std;
 
