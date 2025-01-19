@@ -157,15 +157,16 @@ bool isValidMove(int startX, int startY, int endX, int endY) {
     }
 
     if ((endX == boardSize / 2 && endY == boardSize / 2) ||
-        (endX == 0 && endY == 0) ||
-        (endX == 0 && endY == boardSize - 1) ||
-        (endX == boardSize - 1 && endY == 0) ||
-        (endX == boardSize - 1 && endY == boardSize - 1)) {
+        (board[startX][startY] == '.' || board[endX][endY] != '.')) {
         return false;
     }
 
-    if (board[startX][startY] == '.' || board[endX][endY] != '.') {
-        return false;
+    
+    const int corners[4][2] = { {0, 0}, {0, boardSize - 1}, {boardSize - 1, 0}, {boardSize - 1, boardSize - 1} };
+    for (int i = 0; i < 4; i++) {
+        if (endX == corners[i][0] && endY == corners[i][1] && board[startX][startY] != 'K') {
+            return false; 
+        }
     }
 
     if (startX != endX && startY != endY) {
@@ -216,7 +217,7 @@ bool checkVictory() {
     for (int i = 0; i < 4; i++) {
         int cx = corners[i][0], cy = corners[i][1];
         if (board[cx][cy] == 'K') {
-            cout << "Defenders win!" << endl;
+            cout << "Defenders win! The king has escaped to a corner!" << endl;
             return true;
         }
     }
@@ -332,4 +333,3 @@ int parseNumber(const char* str) {
     }
     return result;
 }
-
