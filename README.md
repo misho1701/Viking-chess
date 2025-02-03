@@ -1,5 +1,5 @@
 Tafl C++ - A Strategic Board Game
-Created by Marin Todorov
+Created by Mihail Georgiev
 
 This project is a C++ implementation of Tafl, a traditional and ancient strategy board game. The game features two opposing sides: The Attacker and The Defender. Players alternate turns, each with distinct rules and objectives, as they seek to either capture the King or help them escape.
 
