@@ -113,6 +113,10 @@ int main() {
     return 0;
 }
 
+/// <summary>
+/// Initialize the board with the given size
+/// </summary>
+/// <param name="size"></param>
 void initializeBoard(int size) {
     boardSize = size;
     int center = size / 2;
@@ -150,6 +154,9 @@ void initializeBoard(int size) {
     board[size - 2][center] = 'A';
 }
 
+/// <summary>
+/// Draw the current state of the board
+/// </summary>
 void drawBoard() {
     cout << "  ";
     for (int i = 0; i < boardSize; i++) cout << i << " ";
@@ -163,6 +170,14 @@ void drawBoard() {
     }
 }
 
+/// <summary>
+/// Is the move from (startX, startY) to (endX, endY) valid?
+/// </summary>
+/// <param name="startX"></param>
+/// <param name="startY"></param>
+/// <param name="endX"></param>
+/// <param name="endY"></param>
+/// <returns></returns>
 bool isValidMove(int startX, int startY, int endX, int endY) {
     if (startX < 0 || startX >= boardSize || startY < 0 || startY >= boardSize ||
         endX < 0 || endX >= boardSize || endY < 0 || endY >= boardSize) {
@@ -200,6 +215,14 @@ bool isValidMove(int startX, int startY, int endX, int endY) {
     return true;
 }
 
+/// <summary>
+/// Check if a piece was captured after moving to (x, y)
+/// </summary>
+/// <param name="x"></param>
+/// <param name="y"></param>
+/// <param name="capturedX"></param>
+/// <param name="capturedY"></param>
+/// <param name="capturedPiece"></param>
 void checkCapture(int x, int y, int& capturedX, int& capturedY, char& capturedPiece) {
     const int dx[] = { -1, 1, 0, 0 };
     const int dy[] = { 0, 0, -1, 1 };
@@ -224,7 +247,10 @@ void checkCapture(int x, int y, int& capturedX, int& capturedY, char& capturedPi
         }
     }
 }
-
+/// <summary>
+/// Check if the game has been won by either side
+/// </summary>
+/// <returns>bool</returns>
 bool checkVictory() {
     const int corners[4][2] = { {0, 0}, {0, boardSize - 1}, {boardSize - 1, 0}, {boardSize - 1, boardSize - 1} };
     for (int i = 0; i < 4; i++) {
@@ -267,6 +293,13 @@ bool checkVictory() {
     return false;
 }
 
+/// <summary>
+/// Make a move from (startX, startY) to (endX, endY)
+/// </summary>
+/// <param name="startX"></param>
+/// <param name="startY"></param>
+/// <param name="endX"></param>
+/// <param name="endY"></param>
 void makeMove(int startX, int startY, int endX, int endY) {
     if (!isValidMove(startX, startY, endX, endY)) {
         cout << "Invalid move!" << endl;
@@ -294,6 +327,9 @@ void makeMove(int startX, int startY, int endX, int endY) {
     currentPlayer = 3 - currentPlayer;
 }
 
+/// <summary>
+/// Undo the last move
+/// </summary>
 void undoMove() {
     if (moveCount == 0) {
         cout << "No moves to undo!" << endl;
@@ -319,6 +355,9 @@ void undoMove() {
     currentPlayer = 3 - currentPlayer;
 }
 
+/// <summary>
+/// Show the help menu
+/// </summary>
 void showHelp() {
     cout << "Commands:\n";
     cout << "  move x1 y1 x2 y2 - move a piece from (x1, y1) to (x2, y2)\n";
@@ -328,16 +367,27 @@ void showHelp() {
     cout << "  quit - quit the game\n";
 }
 
+/// <summary>
+/// Show the current game information
+/// </summary>
 void showInfo() {
     cout << "Player " << (currentPlayer == 1 ? "Attackers" : "Defenders") << "'s turn.\n";
 }
 
+/// <summary>
+/// Display the main menu
+/// </summary>
 void displayMenu() {
     cout << "\nViking Chess - Tafl\n";
     cout << "1. Start a New Game\n";
     cout << "2. Quit\n";
 }
 
+/// <summary>
+/// Parse a number from a string
+/// </summary>
+/// <param name="str"></param>
+/// <returns>int</returns>
 int parseNumber(const char* str) {
     int result = 0;
     while (*str >= '0' && *str <= '9') {
