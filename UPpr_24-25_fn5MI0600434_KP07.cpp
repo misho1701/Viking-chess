@@ -184,17 +184,25 @@ bool isValidMove(int startX, int startY, int endX, int endY) {
         return false;
     }
 
-    if ((endX == boardSize / 2 && endY == boardSize / 2) ||
-        (board[startX][startY] == '.' || board[endX][endY] != '.')) {
+    char piece = board[startX][startY];
+    if ((currentPlayer == 1 && piece != 'A') || (currentPlayer == 2 && piece != 'D' && piece != 'K')) {
         return false;
     }
 
-    
     const int corners[4][2] = { {0, 0}, {0, boardSize - 1}, {boardSize - 1, 0}, {boardSize - 1, boardSize - 1} };
     for (int i = 0; i < 4; i++) {
         if (endX == corners[i][0] && endY == corners[i][1] && board[startX][startY] != 'K') {
-            return false; 
+            return false;
         }
+    }
+
+    const int center[1] = { boardSize / 2 };
+    if (endX == center[0] && endY == center[0] && board[startX][startY] != 'K') {
+        return false;
+    }
+
+    if (board[endX][endY] != '.') {
+        return false;
     }
 
     if (startX != endX && startY != endY) {
