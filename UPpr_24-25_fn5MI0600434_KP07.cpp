@@ -127,7 +127,6 @@ void initializeBoard(int size) {
         }
     }
 
-    board[0][0] = board[0][size - 1] = board[size - 1][0] = board[size - 1][size - 1] = 'X';
 
     board[center][center] = 'K';
 
@@ -247,7 +246,7 @@ void checkCapture(int x, int y, int& capturedX, int& capturedY, char& capturedPi
         int nnx = x + 2 * dx[d], nny = y + 2 * dy[d];
         if (nx >= 0 && nx < boardSize && ny >= 0 && ny < boardSize &&
             nnx >= 0 && nnx < boardSize && nny >= 0 && nny < boardSize) {
-            if ((board[nx][ny] == opponent || board[nx][ny] == 'X') && (board[nnx][nny] == board[x][y] || board[nnx][nny] == 'X')) {
+            if ((board[nx][ny] == opponent) && (board[nnx][nny] == board[x][y])) {
                 capturedX = nx;
                 capturedY = ny;
                 capturedPiece = board[nx][ny];
